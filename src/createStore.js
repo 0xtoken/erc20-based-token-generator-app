@@ -1,24 +1,23 @@
 import {
     createStore as reduxCreateStore,
-    combineReducers,
-    applyMiddleware
+    applyMiddleware,
+    compose
 }from 'redux';
 
 import logger from 'redux-logger';
-import { routerReducer, routerMiddleware } from 'react-router-redux';
+import { routerMiddleware } from 'react-router-redux';
 
-import * as reducers from './reducers';
+import reducers from './reducers';
+
+// redux dev toolを導入する
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export default (history) => {
     return reduxCreateStore(
-        combineReducers({
-            ...reducers,
-            // react-router-reduxのrouter
-            router: routerReducer
-        }),
-        applyMiddleware(
+        reducers,
+        composeEnhancers(applyMiddleware(
             logger,
             // react-router-reduxのRedux MiddleWare
-            routerMiddleware(history))
+            routerMiddleware(history)))
     );
 }
