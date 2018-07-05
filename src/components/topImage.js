@@ -9,6 +9,9 @@ import Typography from '@material-ui/core/Typography';
 import topImage from '../assets/eth_material.svg'
 import TokenInputForm from '../containers/tokenInputForm';
 
+import Button from '@material-ui/core/Button';
+
+
 const styles = theme => ({
     root: {
         flexGrow: 1
@@ -62,8 +65,31 @@ const  TopImage = ({ classes }) => {
 
                             </Paper>
                         </Grid>
+                    </Grid>
+
+                    <Grid container item spacing={0} justify="center" className={classes.paper} >
+                        <Grid item xs={12} sm={6}>
+                            <Paper className={classes.paper}>
+
+                                <Typography variant="display2" component="h2" className={classes.typography}>
+                                    Transaction Hash
+                                </Typography>
+
+                                Transaction Hash will appear here!<br/><br/>
+
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    className={classes.button}
+                                >
+                                    CHECK TOKEN ADDRESS
+                                </Button>
+
+                            </Paper>
+                        </Grid>
 
                     </Grid>
+
                 </Grid>
 
             </Grid>

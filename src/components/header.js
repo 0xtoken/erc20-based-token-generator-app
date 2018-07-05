@@ -30,7 +30,7 @@ const ButtonAppBar = ({ classes, faq, about }) => {
                         ERC20 Token Generator
                     </Typography>
                     <Button color="inherit" component={Link} to="/" >TOP</Button>
-                    <Button color="inherit" component={Link} to="/faq" >FAQ</Button>
+                    <Button color="inherit" component={Link} to="/faq" >STEPS</Button>
                     <Button color="inherit" component={Link} to="/about">ABOUT</Button>
                 </Toolbar>
             </AppBar>

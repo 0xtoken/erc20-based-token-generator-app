@@ -1,15 +1,14 @@
 import { connect } from "react-redux";
 
-import TokenInputForm from '../components/tokenInputForm';
-
 import { change, submit } from '../actions/tokenInputForm';
+import tokenInputForm from "../components/tokenInputForm";
 
 const mapStateToProps = (state) => {
     return {
-        name: state.tokenInputform.name,
-        symbol: state.tokenInputform.symbol,
-        decimals: state.tokenInputform.decimals,
-        totalSupply: state.tokenInputform.totalSupply
+        name: state.tokenInputForm.name,
+        symbol: state.tokenInputForm.symbol,
+        decimals: state.tokenInputForm.decimals,
+        totalSupply: state.tokenInputForm.totalSupply
     }
 };
 
@@ -28,4 +27,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TokenInputForm);
+export default connect(mapStateToProps, mapDispatchToProps)(tokenInputForm);
