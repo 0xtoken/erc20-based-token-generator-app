@@ -1,21 +1,17 @@
 const initialState =  {
-    faq: 0,
-    about: 0
+    isMetaMaskLocked: true,
 };
 
 const header = (state = initialState, action) => {
     switch(action.type) {
-        case 'FAQ':
+        case 'UNLOCK':
             return {
-                ...state,
-                faq: state.faq + action.payload.num
+                isMetaMaskLocked: false
             };
-        case 'ABOUT':
+        case 'LOCK':
             return {
-                ...state,
-                about: state.about + action.payload.num
+                isMetaMaskLocked: true
             };
-
         default:
             return state;
     }

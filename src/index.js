@@ -14,6 +14,7 @@ import "typeface-roboto";
 import Header from './containers/header'
 import Home from './components/home';
 import About from "./components/about";
+import FAQ from "./components/faq";
 
 
 // historyインスタンスの作成
@@ -22,8 +23,6 @@ const history = createBrowserHistory();
 // storeの作成
 const store = createStore(history);
 
-console.log(store.getState());
-
 ReactDOM.render(
     <Provider store={store}>
         <ConnectedRouter history={history}>
@@ -31,7 +30,7 @@ ReactDOM.render(
                 <Header/>
                 <Route exact path="/" component={Home} />
                 <Route path="/about" component={About} />
-                <Route path="/faq" component={About} />
+                <Route path="/faq" component={FAQ} />
             </div>
         </ConnectedRouter>
     </Provider>,

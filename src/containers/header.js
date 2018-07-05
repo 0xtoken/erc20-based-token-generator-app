@@ -6,7 +6,7 @@ import {faq, about} from '../actions/header';
 
 const mapStateToProps = (state) => {
     return {
-        count: state.count
+        isMetaMaskLocked: state.isMetaMaskLocked
     }
 };
 
@@ -18,6 +18,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         about: () => {
             dispatch(about(3));
+        },
+        unlock: () => {
+
         }
     }
 };
