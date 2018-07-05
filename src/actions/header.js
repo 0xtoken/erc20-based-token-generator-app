@@ -1,13 +1,11 @@
-export const faq = (num) => {
+export const lock = () => {
     return {
-        type: 'FAQ',
-        payload: { num }
+        type: 'LOCK'
     }
-}
+};
 
-export const about = (num) => {
+export const unLock = () => {
     return {
-        type: 'ABOUT',
-        payload: { num }
+        type: 'ABOUT'
     }
-}
+};

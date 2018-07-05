@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
+import Home from '../components/home';
 
-import Header from '../components/header';
 
 const mapStateToProps = (state) => {
     return {
@@ -8,4 +8,6 @@ const mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps, null)(Header);
+
+
+export default connect(mapStateToProps, null)(Home);

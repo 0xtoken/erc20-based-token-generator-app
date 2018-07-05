@@ -1,7 +1,8 @@
 const initialState =  {
     isMetaMaskLocked: true,
     currentAddress: undefined,
-    currentNetwork: undefined
+    currentNetwork: undefined,
+    eth: undefined
 };
 
 const metaMask = (state = initialState, action) => {
