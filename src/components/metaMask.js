@@ -33,9 +33,29 @@ const styles = theme => ({
 
 class MetaMask extends React.Component {
 
+    constructor(props) {
+        super(props);
+
+        // web3の初期化処理
+        props.initializeWeb3();
+    }
 
     // TODO web3, Ethの初期化処理
     componentWillMount() {
+
+        const {isMetaMaskLocked, web3} = this.props;
+
+        setInterval(async function () {
+            if (!eth || eth.accounts[0] !== window.account) {
+                console.log("Account changed");
+                window.account = window.web3.eth.accounts[0];
+            }
+        }, 300);
+
+    }
+
+    // TODO clear interval
+    componentWillUnmount() {
 
     }
 

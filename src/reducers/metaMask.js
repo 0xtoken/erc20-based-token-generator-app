@@ -1,8 +1,6 @@
 const initialState =  {
     isMetaMaskLocked: true,
-    currentAddress: undefined,
-    currentNetwork: undefined,
-    eth: undefined
+    web3: undefined
 };
 
 const metaMask = (state = initialState, action) => {
@@ -11,14 +9,12 @@ const metaMask = (state = initialState, action) => {
             return {
                 ...state,
                 isMetaMaskLocked: false,
-                currentAddress: action.payload.address,
-                currentNetwork: action.payload.currentNetwork
+                web3: action.payload.web3
             };
         case 'LOCK':
             return {
                 isMetaMaskLocked: true,
-                currentAddress: undefined,
-                currentNetwork: undefined
+                web3: undefined
             };
         default:
             return state;

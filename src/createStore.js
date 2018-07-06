@@ -6,6 +6,7 @@ import {
 
 import logger from 'redux-logger';
 import { routerMiddleware } from 'react-router-redux';
+import thunk from 'redux-thunk';
 
 import reducers from './reducers';
 
@@ -16,6 +17,7 @@ export default (history) => {
     return reduxCreateStore(
         reducers,
         composeEnhancers(applyMiddleware(
+            thunk,
             logger,
             // react-router-reduxのRedux MiddleWare
             routerMiddleware(history)))
