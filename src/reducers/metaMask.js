@@ -1,21 +1,40 @@
 const initialState =  {
     isMetaMaskLocked: true,
-    web3: undefined
+    isMetaMaskInstalled: false,
+    account: undefined,
+    intervalId: null
 };
 
 const metaMask = (state = initialState, action) => {
     switch(action.type) {
-        case 'UNLOCK':
+        case 'UNLOCKED':
             return {
                 ...state,
                 isMetaMaskLocked: false,
-                web3: action.payload.web3
+                account: action.payload.account
             };
-        case 'LOCK':
+        case 'LOCKED':
             return {
+                ...state,
                 isMetaMaskLocked: true,
-                web3: undefined
+                account: undefined
             };
+
+        case 'INSTALLED':
+            return {
+                ...state,
+                isMetaMaskInstalled: true
+            };
+
+        case 'NOT_INSTALLED':
+            return initialState;
+
+        case 'SET_INTERVAL_ID':
+            return {
+                ...state,
+                intervalId: action.payload.id
+            };
+
         default:
             return state;
     }

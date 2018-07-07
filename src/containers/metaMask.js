@@ -1,22 +1,24 @@
 import { connect } from "react-redux";
 
 import MetaMask from '../components/metaMask';
-import {initializeWeb3, fetchUser} from '../actions/metaMask';
+import {syncEth, setIntervalId} from '../actions/metaMask';
 
 const mapStateToProps = (state) => {
     return {
         isMetaMaskLocked: state.metaMask.isMetaMaskLocked,
-        web3: state.metaMask.web3
+        isMetaMaskInstalled: state.metaMask.isMetaMaskInstalled,
+        account: state.metaMask.account,
+        intervalId: state.metaMask.intervalId
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        initializeWeb3: () => {
-            dispatch(initializeWeb3());
+        syncEth: () => {
+            dispatch(syncEth());
         },
-        fetchUser: () => {
-            dispatch(fetchUser());
+        setIntervalId: (id) => {
+            dispatch(setIntervalId(id));
         }
     }
 };

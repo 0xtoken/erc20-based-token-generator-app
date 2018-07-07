@@ -1,22 +1,35 @@
 import {getSelectedAccount, checkWeb3} from '../apis/web3';
-import Web3 from 'web3';
+import Eth from 'ethjs';
 
-export const initializeWeb3 = () => {
+export const syncEth = () => {
     return (dispatch, getState) => {
-        // stateに保存されているweb3
+        // metaMaskがwindowにinjectしたweb3
+        const {web3} = window;
 
-        // TODO そもそも初期化処理いらないんじゃないかな？
-        const web3 = getState().web3;
-        let output = (typeof web3 !== 'undefined') // web3 given by metamask
-            ? {type: 'UNLOCK', payload: {web3: new Web3(web3.currentProvider), isMetaMaskLocked: false}}
-            : {type: 'LOCK', payload: {web3: null, isMetaMaskLocked: true}};
-        dispatch(output);
+        // stateの初期化処理
+        const initialState = (typeof web3 !== 'undefined') ?
+            {type: 'INSTALLED', payload: {isMetaMaskInstalled: true}}
+            : {type: 'NOT_INSTALLED'};
+        dispatch(initialState);
+
+        // MetaMaskがインストールされており、metaMaskがログイン状態の場合 ethをセットしてUNLOCK状態にする
+        if (getState().metaMask.isMetaMaskInstalled && web3.eth.accounts[0] !== undefined) {
+            dispatch({type: 'UNLOCKED', payload: {account: web3.eth.accounts[0], isMetaMaskLocked: false}})
+
+            // TODO ここでwindowにもたせるということをしても良いのか
+
+        } else {
+            dispatch({type: 'LOCKED'});
+        }
     }
 };
 
-export const fetchUser = () => {
-    return dispatch => {
-        // TODO ethの初期化処理
-    }
-};
 
+export const setIntervalId = (intervalId) => {
+  return {
+      type: 'SET_INTERVAL_ID',
+      payload: {
+          id: intervalId
+      }
+  }
+};
