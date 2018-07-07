@@ -16,9 +16,6 @@ const styles = theme => ({
     root: {
         flexGrow: 1
     },
-    flex: {
-        flex: 1
-    },
     paper: {
         padding: theme.spacing.unit * 2,
         textAlign: 'center',
@@ -46,7 +43,7 @@ class Home extends React.Component {
                             <Grid item xs={12} sm={6}>
                                 <Paper className={classes.paper}>
 
-                                    <Typography variant="display2" component="h2" className={classes.typography}>
+                                    <Typography variant="display1" component="h2" className={classes.typography}>
                                         Original ERC20 Token Generator
 
                                     </Typography>

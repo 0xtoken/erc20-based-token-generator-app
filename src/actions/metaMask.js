@@ -15,9 +15,6 @@ export const syncEth = () => {
         // MetaMaskがインストールされており、metaMaskがログイン状態の場合 ethをセットしてUNLOCK状態にする
         if (getState().metaMask.isMetaMaskInstalled && web3.eth.accounts[0] !== undefined) {
             dispatch({type: 'UNLOCKED', payload: {account: web3.eth.accounts[0], isMetaMaskLocked: false}})
-
-            // TODO ここでwindowにもたせるということをしても良いのか
-
         } else {
             dispatch({type: 'LOCKED'});
         }

@@ -3,13 +3,14 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import {red, lightBlue} from '@material-ui/core/colors'
 
+const notLoggedIn = red[500];
+const loggedIn = lightBlue[500];
 
 const styles = theme => ({
-    container: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        flexDirection: 'row'
+    root: {
+        flexGrow: 1
     },
     textField: {
         marginLeft: theme.spacing.unit,
@@ -26,6 +27,16 @@ const styles = theme => ({
         padding: theme.spacing.unit * 2,
         textAlign: 'center',
         color: theme.palette.text.secondary
+    },
+    addressLoggedIn: {
+        padding: theme.spacing.unit * 2,
+        textAlign: 'center',
+        color: loggedIn
+    },
+    addressNotLoggedIn: {
+        padding: theme.spacing.unit * 2,
+        textAlign: 'center',
+        color: notLoggedIn
     }
 });
 
@@ -84,22 +95,21 @@ class MetaMask extends React.Component {
 
     render () {
 
-        const {classes} = this.props;
-
+        const {classes, account} = this.props;
+        const addressClass = account ?
+            classes.addressLoggedIn : classes.addressNotLoggedIn;
 
         return (
             <div className={classes.root}>
-                <Typography variant="title" component="h2" className={classes.typography}>
-                    MetaMask Locked等の表示とアイコン
+                <Typography variant="headline" component="h2" className={classes.typography}>
+                    Your Current Address
                 </Typography>
-
-                ここに現在のMetaMaskのアドレスやネットワークの表示
-            </div>
-
-        );
+                <div className={addressClass}>
+                    {account || 'MetaMask NOT LOGGED IN!'}
+                </div>
+            </div>);
     }
-
-}
+};
 
 MetaMask.propTypes = {
     classes: PropTypes.object.isRequired,
