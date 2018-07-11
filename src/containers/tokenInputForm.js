@@ -20,9 +20,8 @@ const mapDispatchToProps = (dispatch) => {
                 value
             }));
         },
-        handleSubmit: (state) => {
-            // TODO 非同期処理
-            console.log(state);
+        handleSubmit: () => {
+            dispatch(submit());
         }
     }
 };
