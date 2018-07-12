@@ -87,7 +87,8 @@ const FaQ = ({ classes }) => {
 
                                             MetaMask は、次のリンクからインストールすることができます。<br /><br />
 
-                                            MetaMask をインストール<br /><br />
+                                            <br />
+                                            <a target="_blank" rel="noopener noreferrer" href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn">MetaMask をインストール</a>
 
                                         </Typography>
                                     </ExpansionPanelDetails>
@@ -136,17 +137,20 @@ const FaQ = ({ classes }) => {
                                     <ExpansionPanelDetails>
                                         <Typography className={classes.typographyEx}>
 
-                                            フォームに必要項目を入力し、"CREATE MY TOKEN" ボタンを押します。<br /><br />
-                                            "CREATE MY TOKEN" ボタンを押すと、MetaMask の画面が表示されるので、内容を確認します。<br /><br />
+                                            フォームに必要項目を入力し、"SUBMIT" ボタンを押下します。<br /><br />
+                                            "SUBMIT" ボタンを押すと、MetaMask の画面が表示されるので、内容を確認します。<br /><br />
 
-                                            MetaMaskの画面内容を確認して、"SUBMIT" ボタンを押下します。<br /><br />
+                                            MetaMaskの画面内容を確認して、MetaMask上の"SUBMIT" ボタンを押下します。<br /><br />
                                             Gas Limit は変更しないでください。Gas Price は調整することができますが、Gas Price を低くしすぎるとブロックに取り込まれるまでに時間がかかるため、通常は変更しないことをおすすめします。<br /><br />
 
-                                            正常にトランザクションが実行されると、フォーム下部に「トランザクションハッシュ」と呼ばれるトランザクションのIDにあたるものが表示されるので、必ず控えてください。<br /><br />
+                                            正常にトランザクションが実行されると、「Transaction Hash」部分にトランザクションのIDにあたるものが表示されるので、必ず控えてください。<br /><br />
 
-                                            トランザクションの状況は、つぎのリンクから確認することができます。<br /><br />
+                                            トランザクションの状況は、トークンを作成したネットワークに応じて、つぎのリンクから確認することができます。<br /><br />
 
-                                            Etherscan<br /><br />
+
+                                            <a target="_blank" rel="noopener noreferrer" href="https://ropsten.etherscan.io/">Rosten Etherscan</a><br />
+                                            <a target="_blank" rel="noopener noreferrer" href="https://etherscan.io/">Main Etherscan</a>
+                                            <br /><br />
 
                                             トランザクションが送信されてから、実際にブロックに取り込まれるまで数十秒から数分かかります。<br /><br />
 
@@ -161,38 +165,14 @@ const FaQ = ({ classes }) => {
                                     <ExpansionPanelDetails>
                                         <Typography className={classes.typographyEx}>
 
-                                            「トークアンドレスの確認」フォームにトランザクションハッシュを入力し、"CHECK TOKEN ADDRESS" ボタンを押下すると、ERC20トークンのアドレスを表示することができます。<br /><br />
+                                            "CHECK CONTRACT ADDRESS" ボタンを押下すると、作成されたERC20トークンのアドレスを表示することができます。<br /><br />
 
-                                            STEP5 で実行したトランザクションがブロックに取り込まれるまで数十秒から数分時間がかかるため、しばらく待ってからこのステップを完了してください。<br /><br />
+                                            トランザクションがブロックに取り込まれるまでに時間がかかる場合があります。その場合「時間を置いてからお試しください。」というダイアログが表示されますので時間をおいて再度お試しください。<br /><br />
 
-                                            トークンの詳細情報は、つぎのリンクから確認することができます。<br /><br />
+                                            トークンの詳細情報は、トークンを作成したネットワークに応じて、つぎのリンクから確認することができます。<br /><br />
 
-                                            Etherscan<br /><br />
-
-                                        </Typography>
-                                    </ExpansionPanelDetails>
-                                </ExpansionPanel>
-
-                                <ExpansionPanel>
-                                    <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                                        <Typography className={classes.heading}>STEP7: MetaMask にトークンを追加</Typography>
-                                    </ExpansionPanelSummary>
-                                    <ExpansionPanelDetails>
-                                        <Typography className={classes.typographyEx}>
-
-                                            トークンアドレスを取得したら、MetaMask にトークンアドレスを追加します。<br /><br />
-
-                                            まず、トークンアドレスをコピーしておきます。<br /><br />
-
-                                            つぎに、ブラウザの MetaMask アイコン をクリックし、TOKENSタブを開き、"ADD TOKEN"ボタンを押下し、"Token Contract Address"にトークンアドレスを入力します。<br /><br />
-
-                                            TOKENSタブの"ADD TOKEN"ボタンをクリックします。<br /><br />
-
-                                            "Token Contract Address"という項目に、先ほどコピーしたトークンアドレスを入力し、"ADD" ボタンを押下します。<br /><br />
-
-
-                                            トークンが正常に追加されていることを確認します。<br /><br />
-
+                                            <a target="_blank" rel="noopener noreferrer" href="https://ropsten.etherscan.io/">Rosten Etherscan</a><br />
+                                            <a target="_blank" rel="noopener noreferrer" href="https://etherscan.io/">Main Etherscan</a>
 
                                         </Typography>
                                     </ExpansionPanelDetails>
@@ -261,9 +241,6 @@ const FaQ = ({ classes }) => {
 
                                             しばらくすると、トランザクションがブロックに取り込まれ、トークンの送付が完了します。<br /><br />
 
-                                            送付先のアドレスでも、この STEP7「MyEtherWallet にトークンを追加」の手順を踏むことで、送付されたトークンを確認することができます。<br /><br />
-
-
 
                                         </Typography>
                                     </ExpansionPanelDetails>
@@ -300,6 +277,16 @@ const FaQ = ({ classes }) => {
                                             MetaMaskとはブラウザのエクステンションで主要なイーサリアムウォレットの一つです。<br/>
                                             セキュリティレベルが高いことでも有名で利用される方は多いです。<br />
 
+                                        </Typography>
+                                    </ExpansionPanelDetails>
+                                </ExpansionPanel>
+                                <ExpansionPanel>
+                                    <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                                        <Typography className={classes.heading}>このサイトはどのEthereumネットワークに対応していますか？</Typography>
+                                    </ExpansionPanelSummary>
+                                    <ExpansionPanelDetails>
+                                        <Typography className={classes.typographyEx}>
+                                           現在はメインネットワークとRopstenのテストネットワークに対応しています。<br/>
                                         </Typography>
                                     </ExpansionPanelDetails>
                                 </ExpansionPanel>

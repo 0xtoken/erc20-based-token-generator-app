@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import {withStyles} from "@material-ui/core/styles/index";
 
-import BackGroundImage from './assets/eth_material.svg'
-
-
 import Home from './containers/home';
 import Header from './containers/header'
 import About from "./components/about";
@@ -26,21 +23,21 @@ const styles = theme => ({
         padding: theme.spacing.unit * 2,
         textAlign: 'center',
         color: theme.palette.text.secondary
+    },
+    main: {
+        color: theme.palette
     }
 });
 
-const backGroundStyle  = {
-    flex: 1,
-    width: '100%',
-    height: '100%',
-    backgroundImage: `url(${BackGroundImage})`,
-    backgroundSize: 'cover'
-};
 
 class App extends Component {
+
     render() {
+
+        const {classes} = this.props;
+
         return (
-            <div className="App" style={backGroundStyle}>
+            <div className="App" className={classes.main}>
                 <Header/>
                 <Switch>
                     <Route exact path="/" component={Home} />

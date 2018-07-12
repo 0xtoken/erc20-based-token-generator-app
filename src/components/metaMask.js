@@ -24,17 +24,17 @@ const styles = theme => ({
         marginLeft: theme.spacing.unit,
     },
     typography: {
-        padding: theme.spacing.unit * 2,
+        padding: theme.spacing.unit,
         textAlign: 'center',
         color: theme.palette.text.secondary
     },
     addressLoggedIn: {
-        padding: theme.spacing.unit * 2,
+        padding: theme.spacing.unit,
         textAlign: 'center',
         color: loggedIn
     },
     addressNotLoggedIn: {
-        padding: theme.spacing.unit * 2,
+        padding: theme.spacing.unit,
         textAlign: 'center',
         color: notLoggedIn
     }
@@ -42,19 +42,21 @@ const styles = theme => ({
 
 class MetaMask extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     componentDidMount() {
 
         // metaMaskがwindowにinjectしたweb3;
         const { web3 } = window;
 
-        const {syncEth, setIntervalId} = this.props;
+        const {syncEth, setIntervalId, setMetaMaskInstalledStatus} = this.props;
 
         // thisをselfにバインド
         const self = this;
+
+        // MetaMaskのインストール状況を初期化
+        if (web3) {
+            // web3が存在する場合はMetaMaskがインストールされているということ
+            setMetaMaskInstalledStatus('INSTALLED');
+        }
 
         // 定期的にMetaMaskがinjectしたweb3情報を取得しStateに保存した情報と差異がないか確認する
         const accountInterval = setInterval(function() {
@@ -70,6 +72,8 @@ class MetaMask extends React.Component {
                 if (currentAccount !== account) {
                     syncEth();
                 }
+            } else {
+                setMetaMaskInstalledStatus('NOT_INSTALLED');
             }
 
         }, 300);
@@ -95,17 +99,23 @@ class MetaMask extends React.Component {
 
     render () {
 
-        const {classes, account} = this.props;
+        const {classes, account, network, isMetaMaskInstalled} = this.props;
         const addressClass = account ?
             classes.addressLoggedIn : classes.addressNotLoggedIn;
 
         return (
             <div className={classes.root}>
-                <Typography variant="headline" component="h2" className={classes.typography}>
+                <Typography variant="Subheading" component="h2" className={classes.typography}>
                     Your Current Address
                 </Typography>
                 <div className={addressClass}>
-                    {account || 'MetaMask NOT LOGGED IN!'}
+                    {isMetaMaskInstalled ? account ? account : 'METAMASK NOT LOGGED IN!' : 'INSTALL METAMASK FIRST!'}
+                </div>
+                <Typography variant="Subheading" component="h2" className={classes.typography}>
+                    Your Current Network
+                </Typography>
+                <div className={addressClass}>
+                    {network}
                 </div>
             </div>);
     }

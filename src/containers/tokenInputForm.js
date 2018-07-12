@@ -7,8 +7,10 @@ const mapStateToProps = (state) => {
     return {
         name: state.tokenInputForm.name,
         symbol: state.tokenInputForm.symbol,
-        decimals: state.tokenInputForm.decimals,
-        totalSupply: state.tokenInputForm.totalSupply
+        totalSupply: state.tokenInputForm.totalSupply,
+        loading: state.tokenInputForm.loading,
+        success: state.tokenInputForm.success,
+        isMetaMaskInstalled: state.metaMask.isMetaMaskInstalled
     }
 };
 

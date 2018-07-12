@@ -2,7 +2,8 @@ const initialState =  {
     isMetaMaskLocked: true,
     isMetaMaskInstalled: false,
     account: undefined,
-    intervalId: null
+    intervalId: null,
+    network: undefined
 };
 
 const metaMask = (state = initialState, action) => {
@@ -34,6 +35,12 @@ const metaMask = (state = initialState, action) => {
                 ...state,
                 intervalId: action.payload.id
             };
+        case 'SET_NETWORK':
+            return {
+                ...state,
+                network: action.payload.network
+            }
+
 
         default:
             return state;

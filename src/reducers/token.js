@@ -1,6 +1,7 @@
 const initialState =  {
     transactionHash: undefined,
-    tokenContractAddress: undefined
+    tokenContractAddress: undefined,
+    transactionInProgress: false
 };
 
 const token = (state = initialState, action) => {
@@ -15,6 +16,12 @@ const token = (state = initialState, action) => {
             return {
                 ...state,
                 tokenContractAddress: action.payload.tokenContractAddress
+            };
+
+        case 'TRANSACTION_IN_PROGRESS':
+            return {
+                ...state,
+                transactionInProgress: !state.transactionInProgress
             };
         default:
             return state;

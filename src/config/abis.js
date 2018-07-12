@@ -141,3 +141,5 @@ export const ropsten = [
         "type": "function"
     }
 ];
+
+export const main = [];

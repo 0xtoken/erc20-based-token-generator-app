@@ -5,12 +5,15 @@ import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-
 
 import TokenInputForm from '../containers/tokenInputForm';
 import MetaMask from '../containers/metaMask';
+import Token from '../containers/token';
 
+import {pink, teal} from '@material-ui/core/colors'
+
+const mainNetwork = teal[800];
+const ropstenNetwork = pink[700];
 
 const styles = theme => ({
     root: {
@@ -25,6 +28,12 @@ const styles = theme => ({
         padding: theme.spacing.unit * 2,
         textAlign: 'center',
         color: theme.palette.text.secondary
+    },
+    ropsten: {
+        color: ropstenNetwork
+    },
+    main: {
+        color: mainNetwork
     }
 });
 
@@ -44,13 +53,20 @@ class Home extends React.Component {
                                 <Paper className={classes.paper}>
 
                                     <Typography variant="display1" component="h2" className={classes.typography}>
-                                        Original ERC20 Token Generator
-
+                                        Token Generator
                                     </Typography>
 
-                                    MetaMaskを利用してオリジナル暗号通貨（ERC20トークン）を作成できるツールです。<br/><br/>
-                                    プログラミング等の知識は一切必要ありません。<br/><br/>
-                                    手順に従うことで簡単にオリジナル暗号通貨を作成することができます。<br/><br/>
+                                    <Typography variant="Subheading" component="h2" className={classes.typography}>
+                                        Available On
+                                    </Typography>
+
+
+                                    <div className={classes.main}>
+                                        Main Ethereum Network
+                                    </div>
+                                    <div className={classes.ropsten}>
+                                        Ropsten Test Network
+                                    </div>
 
                                     <MetaMask/>
 
@@ -67,24 +83,9 @@ class Home extends React.Component {
                         <Grid container item spacing={0} justify="center" className={classes.paper} >
                             <Grid item xs={12} sm={6}>
                                 <Paper className={classes.paper}>
-
-                                    <Typography variant="display2" component="h2" className={classes.typography}>
-                                        Transaction Hash
-                                    </Typography>
-
-                                    Transaction Hash will appear here!<br/><br/>
-
-                                    <Button
-                                        variant="contained"
-                                        color="primary"
-                                        className={classes.button}
-                                    >
-                                        CHECK TOKEN ADDRESS
-                                    </Button>
-
+                                    <Token/>
                                 </Paper>
                             </Grid>
-
                         </Grid>
 
                     </Grid>

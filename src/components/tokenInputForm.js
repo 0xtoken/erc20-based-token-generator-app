@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 
 const styles = theme => ({
@@ -23,6 +24,14 @@ const styles = theme => ({
     rightIcon: {
         marginLeft: theme.spacing.unit,
     },
+    liner: {
+        flexGrow: 1
+    },
+    submitField: {
+        marginLeft: theme.spacing.unit,
+        marginRight: theme.spacing.unit,
+        width: 600
+    }
 });
 
 class TextFields extends React.Component {
@@ -40,7 +49,7 @@ class TextFields extends React.Component {
     };
 
     render() {
-        const { classes, name, symbol, decimals, totalSupply } = this.props;
+        const { classes, loading, success, isMetaMaskInstalled} = this.props;
 
         return (
             <form className={classes.container} noValidate autoComplete="off">
@@ -49,35 +58,23 @@ class TextFields extends React.Component {
                     required
                     id="name"
                     label="NAME"
-                    placeholder="MADOKACOIN"
+                    placeholder="TOKENGENCOIN"
                     type="string"
                     className={classes.textField}
                     margin="normal"
                     onChange={this.handleChange('CHANGE_NAME')}
+                    disabled={success}
                 />
                 <TextField
                     required
                     id="symbol"
                     label="SYMBOL"
-                    placeholder="MDKCN"
+                    placeholder="TGN"
                     type="string"
                     className={classes.textField}
                     onChange={this.handleChange('CHANGE_SYMBOL')}
                     margin="normal"
-                />
-
-                <TextField
-                    required
-                    id="decimals"
-                    label="DECIMALS"
-                    placeholder={18}
-                    onChange={this.handleChange('CHANGE_DECIMALS')}
-                    type="number"
-                    className={classes.textField}
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                    margin="normal"
+                    disabled={success}
                 />
                 <TextField
                     required
@@ -91,17 +88,30 @@ class TextFields extends React.Component {
                         shrink: true,
                     }}
                     margin="normal"
+                    disabled={success}
                 />
-
-                <Button
-                    variant="contained"
-                    color="primary"
-                    className={classes.button}
-                    onClick={this.handleSubmit({name,symbol,decimals,totalSupply})}
-                >
-                    Create My Token
-                    <Icon className={classes.rightIcon}>send</Icon>
-                </Button>
+                <div className={classes.submitField}>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        className={classes.button}
+                        onClick={this.handleSubmit()}
+                        disabled={!isMetaMaskInstalled || loading || success}
+                    >
+                        {!isMetaMaskInstalled ? 'INSTALL METAMASK FIRST!' : !success ? 'SUBMIT' : 'Go to CHECK TOKEN ADDRESS'}
+                        <Icon className={classes.rightIcon}>send</Icon>
+                    </Button>
+                    {(() => {
+                        if (loading) {
+                            return (
+                                <div className={classes.liner}>
+                                    <LinearProgress color="secondary" />
+                                    <br/>
+                                </div>
+                            );
+                        }
+                    })()}
+                </div>
             </form>
         );
     }

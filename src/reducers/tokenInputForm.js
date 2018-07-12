@@ -1,8 +1,9 @@
 const initialState =  {
     name: 'madokacoin',
     symbol: 'MDKCN',
-    decimals: 18,
-    totalSupply: 1000
+    totalSupply: 1000,
+    loading: false,
+    success: false
 };
 
 const tokenInputForm = (state = initialState, action) => {
@@ -17,15 +18,22 @@ const tokenInputForm = (state = initialState, action) => {
                 ...state,
                 symbol: action.payload.value
             };
-        case 'CHANGE_DECIMALS':
-            return {
-                ...state,
-                decimals: action.payload.value
-            };
         case 'CHANGE_TOTAL_SUPPLY':
             return {
                 ...state,
                 totalSupply: action.payload.value
+            };
+
+
+        case 'CHANGE_LOADING':
+            return {
+                ...state,
+                loading: !state.loading
+            };
+        case 'CHANGE_SUCCESS':
+            return {
+                ...state,
+                success: action.payload.status
             };
         default:
             return state;
