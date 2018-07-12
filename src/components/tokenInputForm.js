@@ -49,7 +49,10 @@ class TextFields extends React.Component {
     };
 
     render() {
-        const { classes, loading, success, isMetaMaskInstalled} = this.props;
+        const { classes, loading, success, isMetaMaskInstalled, currentNetwork} = this.props;
+
+        const isOnValidNetwork =
+            currentNetwork === 'MAIN_ETHEREUM_NETWORK' || currentNetwork === 'ROPSTEN_TEST_NETWORK';
 
         return (
             <form className={classes.container} noValidate autoComplete="off">
@@ -63,7 +66,7 @@ class TextFields extends React.Component {
                     className={classes.textField}
                     margin="normal"
                     onChange={this.handleChange('CHANGE_NAME')}
-                    disabled={success}
+                    disabled={!isOnValidNetwork || success}
                 />
                 <TextField
                     required
@@ -74,7 +77,7 @@ class TextFields extends React.Component {
                     className={classes.textField}
                     onChange={this.handleChange('CHANGE_SYMBOL')}
                     margin="normal"
-                    disabled={success}
+                    disabled={!isOnValidNetwork || success}
                 />
                 <TextField
                     required
@@ -88,7 +91,7 @@ class TextFields extends React.Component {
                         shrink: true,
                     }}
                     margin="normal"
-                    disabled={success}
+                    disabled={!isOnValidNetwork || success}
                 />
                 <div className={classes.submitField}>
                     <Button
@@ -96,7 +99,7 @@ class TextFields extends React.Component {
                         color="primary"
                         className={classes.button}
                         onClick={this.handleSubmit()}
-                        disabled={!isMetaMaskInstalled || loading || success}
+                        disabled={!isMetaMaskInstalled || !isOnValidNetwork || loading || success}
                     >
                         {!isMetaMaskInstalled ? 'INSTALL METAMASK FIRST!' : !success ? 'SUBMIT' : 'Go to CHECK TOKEN ADDRESS'}
                         <Icon className={classes.rightIcon}>send</Icon>

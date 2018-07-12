@@ -41,7 +41,10 @@ const styles = theme => ({
 class Home extends React.Component {
     render() {
 
-        const {classes, isMetaMaskLocked} = this.props;
+        const {classes, isMetaMaskLocked, currentNetwork} = this.props;
+
+        const isOnValidNetwork =
+            currentNetwork === 'MAIN_ETHEREUM_NETWORK' || currentNetwork === 'ROPSTEN_TEST_NETWORK';
 
         return (
             <div className={classes.root}>
@@ -70,12 +73,17 @@ class Home extends React.Component {
 
                                     <MetaMask/>
 
-                                    <Grid container item justify="center">
-                                        <Grid item xs={12} sm={6}>
-                                            <TokenInputForm />
-                                        </Grid>
-                                    </Grid>
-
+                                    {(()=> {
+                                        if (isOnValidNetwork) {
+                                            return (
+                                                <Grid container item justify="center">
+                                                    <Grid item xs={12} sm={6}>
+                                                        <TokenInputForm />
+                                                    </Grid>
+                                                </Grid>
+                                            );
+                                        }
+                                    })()}
                                 </Paper>
                             </Grid>
                         </Grid>

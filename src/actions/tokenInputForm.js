@@ -18,14 +18,12 @@ const getFee = async (tokenGenerator) => {
     });
 };
 
-
 export const change = ({type, value}) => {
     return {
         type,
         payload: {value: value}
     }
 };
-
 
 export const submit = () => {
     return async (dispatch, getState) => {
@@ -56,14 +54,13 @@ export const submit = () => {
                 type: 'CHANGE_LOADING'
             });
 
-
-            // TODO ここでバリデーションするか、もしくはバリデーション済みのものが渡ってくる前提にするかどうか
-            const {name, symbol, totalSupply} = getState().tokenInputForm;
-            const {account} = getState().metaMask;
-
-
             let result;
             try {
+
+                // TODO validation
+                const {name, symbol, totalSupply} = getState().tokenInputForm;
+
+                const {account} = getState().metaMask;
 
                 const fee = await getFee(tokenGenerator);
 
@@ -107,8 +104,6 @@ export const submit = () => {
             dispatch({
                 type: 'CHANGE_LOADING'
             });
-        } else {
-            // TODO　対応するnetworkに行くようにダイアログを出す
         }
     };
 };

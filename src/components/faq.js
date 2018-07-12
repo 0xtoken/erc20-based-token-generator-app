@@ -290,6 +290,16 @@ const FaQ = ({ classes }) => {
                                         </Typography>
                                     </ExpansionPanelDetails>
                                 </ExpansionPanel>
+                                <ExpansionPanel>
+                                    <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                                        <Typography className={classes.heading}>トークン情報を入力するフォームが表示されません。</Typography>
+                                    </ExpansionPanelSummary>
+                                    <ExpansionPanelDetails>
+                                        <Typography className={classes.typographyEx}>
+                                            未対応のネットワークに接続しているためです。現在はメインネットワークとRopstenのテストネットワークに対応しています。<br/>
+                                        </Typography>
+                                    </ExpansionPanelDetails>
+                                </ExpansionPanel>
                             </Paper>
                         </Grid>
 

@@ -10,7 +10,8 @@ const mapStateToProps = (state) => {
         totalSupply: state.tokenInputForm.totalSupply,
         loading: state.tokenInputForm.loading,
         success: state.tokenInputForm.success,
-        isMetaMaskInstalled: state.metaMask.isMetaMaskInstalled
+        isMetaMaskInstalled: state.metaMask.isMetaMaskInstalled,
+        currentNetwork: state.metaMask.network
     }
 };
 
