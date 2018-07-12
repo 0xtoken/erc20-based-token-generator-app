@@ -33,7 +33,8 @@ const styles = theme => ({
         color: ropstenNetwork
     },
     main: {
-        color: mainNetwork
+        color: mainNetwork,
+        'text-decoration': 'line-through'
     }
 });
 
@@ -43,8 +44,8 @@ class Home extends React.Component {
 
         const {classes, isMetaMaskLocked, currentNetwork} = this.props;
 
-        const isOnValidNetwork =
-            currentNetwork === 'MAIN_ETHEREUM_NETWORK' || currentNetwork === 'ROPSTEN_TEST_NETWORK';
+        const isOnValidNetwork = currentNetwork === 'ROPSTEN_TEST_NETWORK';
+            // currentNetwork === 'MAIN_ETHEREUM_NETWORK' || currentNetwork === 'ROPSTEN_TEST_NETWORK';
 
         return (
             <div className={classes.root}>
@@ -55,21 +56,21 @@ class Home extends React.Component {
                             <Grid item xs={12} sm={6}>
                                 <Paper className={classes.paper}>
 
-                                    <Typography variant="display1" component="h2" className={classes.typography}>
+                                    <Typography variant="display1" component="h1" className={classes.typography}>
                                         Token Generator
                                     </Typography>
 
-                                    <Typography variant="Subheading" component="h2" className={classes.typography}>
+                                    <Typography variant="Subheading" component="h4" className={classes.typography}>
                                         Available On
                                     </Typography>
 
 
-                                    <div className={classes.main}>
+                                    <p className={classes.main}>
                                         Main Ethereum Network
-                                    </div>
-                                    <div className={classes.ropsten}>
+                                    </p>
+                                    <p className={classes.ropsten}>
                                         Ropsten Test Network
-                                    </div>
+                                    </p>
 
                                     <MetaMask/>
 

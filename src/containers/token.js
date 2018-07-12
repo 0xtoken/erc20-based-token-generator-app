@@ -7,7 +7,8 @@ const mapStateToProps = (state) => {
     return {
         txHash: state.token.transactionHash,
         address: state.token.tokenContractAddress,
-        transactionInProgress: state.token.transactionInProgress
+        transactionInProgress: state.token.transactionInProgress,
+        network: state.metaMask.network
     }
 };
 const mapDispatchToProps = (dispatch) => {

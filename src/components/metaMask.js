@@ -105,13 +105,13 @@ class MetaMask extends React.Component {
 
         return (
             <div className={classes.root}>
-                <Typography variant="Subheading" component="h2" className={classes.typography}>
+                <Typography variant="Subheading" component="h4" className={classes.typography}>
                     Your Current Address
                 </Typography>
                 <div className={addressClass}>
                     {isMetaMaskInstalled ? account ? account : 'METAMASK NOT LOGGED IN!' : 'INSTALL METAMASK FIRST!'}
                 </div>
-                <Typography variant="Subheading" component="h2" className={classes.typography}>
+                <Typography variant="Subheading" component="h4" className={classes.typography}>
                     Your Current Network
                 </Typography>
                 <div className={addressClass}>

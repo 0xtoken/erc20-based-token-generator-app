@@ -37,7 +37,7 @@ class App extends Component {
         const {classes} = this.props;
 
         return (
-            <div className="App" className={classes.main}>
+            <div className={classes.main}>
                 <Header/>
                 <Switch>
                     <Route exact path="/" component={Home} />

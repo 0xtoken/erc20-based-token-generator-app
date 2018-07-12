@@ -47,10 +47,11 @@ const styles = theme => ({
     }
 });
 
-const Token = ({classes, txHash, address, transactionInProgress, onClickCheckAddress, onCloseDialog}) => {
+const Token = ({classes, txHash, address, transactionInProgress, network, onClickCheckAddress, onCloseDialog}) => {
 
     const txHashClass = txHash ?
         classes.hasTxHash : classes.notHaveTxHash;
+
 
     return (
         <div className={classes.root}>
@@ -60,9 +61,19 @@ const Token = ({classes, txHash, address, transactionInProgress, onClickCheckAdd
             </Typography>
 
             <div className={txHashClass}>
-                {txHash || 'There is no Transaction Receipt!'}
-            </div>
+                {(() => {
+                    if (txHash) {
+                        const txHashUrl = network !== 'MAIN_ETHEREUM_NETWORK' ?
+                            `https://ropsten.etherscan.io/tx/${txHash}` :
+                            `https://etherscan.io/tx/${txHash}`;
 
+                        return <a target="_blank" rel="noopener noreferrer" href={txHashUrl}>{txHash}</a>;
+                    } else {
+                        return 'There is no Transaction Receipt!';
+                    }
+
+                })()}
+            </div>
 
             <Button
                 variant="contained"
@@ -96,8 +107,9 @@ const Token = ({classes, txHash, address, transactionInProgress, onClickCheckAdd
                     <DialogTitle id="alert-dialog-title">{"時間を置いてからお試しください。"}</DialogTitle>
                     <DialogContent>
                         <DialogContentText id="alert-dialog-description">
-                            Ethereumのネットーワーク状況により、トランザクションがブロックに取り込まれるまでに時間がかかっているようです。
-                            ブラウザをリロードせずに、5分程経過したら再度お試しください。
+                            Ethereumのネットーワーク状況により、トランザクションがブロックに取り込まれるまでに時間がかかる場合がございます。
+                            ハッシュ値のリンクをクリックすることで別タブで外部サイトに飛び詳細情報を確認することができます。
+                            お手数をおかけしますが、ブラウザをリロードせずに5分程時間を置いて再度お試しください。
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>
@@ -110,16 +122,21 @@ const Token = ({classes, txHash, address, transactionInProgress, onClickCheckAdd
 
             {(() => {
                 if (!!address) {
+
+                    const url = network !== 'MAIN_ETHEREUM_NETWORK' ?
+                        `https://ropsten.etherscan.io/address/${address}` :
+                        `https://etherscan.io/address/${address}`;
+
                     return (
                         <div>
                             <Typography variant="display1" component="h2" className={classes.typography}>
                                 Contract Address
                             </Typography>
 
-                            FAQのSTEP7以降の手順に従ってMetaMaskにTokenを登録しましょう。<br />
+                            STEPSのSTEP7以降の手順に従ってMetaMaskにTokenを登録しましょう。<br/>
 
                             <div className={txHashClass}>
-                                {address}
+                                <a target="_blank" rel="noopener noreferrer" href={url}>{address}</a>
                             </div>
 
                             <Button

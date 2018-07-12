@@ -11,7 +11,8 @@ const mapStateToProps = (state) => {
         loading: state.tokenInputForm.loading,
         success: state.tokenInputForm.success,
         isMetaMaskInstalled: state.metaMask.isMetaMaskInstalled,
-        currentNetwork: state.metaMask.network
+        currentNetwork: state.metaMask.network,
+        error: state.tokenInputForm.error
     }
 };
 
@@ -25,6 +26,11 @@ const mapDispatchToProps = (dispatch) => {
         },
         handleSubmit: () => {
             dispatch(submit());
+        },
+        handleErrorReset: () => {
+            dispatch({
+                type: 'RESET_ERROR'
+            })
         }
     }
 };

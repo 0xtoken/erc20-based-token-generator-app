@@ -1,7 +1,8 @@
 import Eth from 'ethjs';
 
+import _ from 'lodash';
 import {ropsten as TEST_ABI, main as ABI} from '../config/abis';
-import {ropsten as testAddress, main as address } from '../config/contractAddresses';
+import {ropsten as testAddress, main as address} from '../config/contractAddresses';
 
 /**
  * feeを取得
@@ -17,6 +18,37 @@ const getFee = async (tokenGenerator) => {
         });
     });
 };
+
+const isInteger = (x) => {
+    x = parseFloat(x);
+    return Math.round(x) === x;
+}
+
+const isAscii = (str) => str.match(/^[\u0020-\u007e]+$/);
+
+const isValidTokenParams = ({name, symbol, totalSupply}) => {
+    const result = {
+        isValid: false
+    };
+    if (name === "" || name == null || !isAscii(name)) {
+        result.errorType = 'name';
+        return result;
+    }
+
+    if (symbol === "" || symbol === null || !isAscii(symbol)) {
+        result.errorType = 'symbol';
+        return result;
+    }
+
+    if (totalSupply <= 0 || !isInteger(totalSupply)) {
+        result.errorType = 'totalSupply';
+        return result;
+    }
+
+    result.isValid = true;
+
+    return result;
+}
 
 export const change = ({type, value}) => {
     return {
@@ -56,9 +88,19 @@ export const submit = () => {
 
             let result;
             try {
-
-                // TODO validation
                 const {name, symbol, totalSupply} = getState().tokenInputForm;
+                const params = {name, symbol, totalSupply};
+
+
+                console.log(params);
+
+                // 入力された情報をバリデーションする
+                const validation = isValidTokenParams(params);
+                if (!validation.isValid) {
+                    throw {code: 777, message: validation.errorType};
+                }
+
+                console.log(validation);
 
                 const {account} = getState().metaMask;
 
@@ -96,8 +138,31 @@ export const submit = () => {
                 });
 
             } catch (e) {
-                // TODO エラー関連のアクションをディスパッチする
-                console.log(e);
+
+                if (_.includes(e.message, '-32603')) {
+                    e.code = -32603;
+                }
+
+                switch (e.code) {
+                    case -32603:
+                        dispatch({
+                            type: 'METAMASK_REJECT_ERROR'
+                        });
+                        break;
+
+                    case 777:
+                        dispatch({
+                            type: 'INVALID_PARAMS',
+                            payload: {param: e.message}
+                        });
+                        break;
+
+                    default:
+                        dispatch({
+                            type: 'INTERNAL_SERVER_ERROR'
+                        });
+                        break;
+                }
             }
 
             // 画面をローディング状態を解除
