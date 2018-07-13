@@ -33,8 +33,7 @@ const styles = theme => ({
         color: ropstenNetwork
     },
     main: {
-        color: mainNetwork,
-        'text-decoration': 'line-through'
+        color: mainNetwork
     }
 });
 
@@ -44,8 +43,7 @@ class Home extends React.Component {
 
         const {classes, isMetaMaskLocked, currentNetwork} = this.props;
 
-        const isOnValidNetwork = currentNetwork === 'ROPSTEN_TEST_NETWORK';
-            // currentNetwork === 'MAIN_ETHEREUM_NETWORK' || currentNetwork === 'ROPSTEN_TEST_NETWORK';
+        const isOnValidNetwork = currentNetwork === 'MAIN_ETHEREUM_NETWORK' || currentNetwork === 'ROPSTEN_TEST_NETWORK';
 
         return (
             <div className={classes.root}>
