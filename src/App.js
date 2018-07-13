@@ -6,6 +6,7 @@ import Home from './containers/home';
 import Header from './containers/header'
 import About from "./components/about";
 import FAQ from "./components/faq";
+import STEPS from "./components/steps";
 
 const styles = theme => ({
     root: {
@@ -43,6 +44,7 @@ class App extends Component {
                     <Route exact path="/" component={Home} />
                     <Route path="/about" component={About} />
                     <Route path="/faq" component={FAQ} />
+                    <Route path="/steps" component={STEPS} />
                 </Switch>
             </div>
         );
