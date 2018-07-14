@@ -2,4 +2,8 @@
 
 MetaMaskを利用してERC20ベースのオリジナルトークンを作成するウェブサイトです。
 
-React + Reduxを利用して作成しています。
+React + Redux + Material UIを利用して作成しています。
+
+[作成したサイト](https://token-generator.com/)はこちらになります。
+
+https://token-generator.com/
