@@ -5,7 +5,8 @@ import Home from '../components/home';
 const mapStateToProps = (state) => {
     return {
         isMetaMaskLocked: state.metaMask.isMetaMaskLocked,
-        currentNetwork: state.metaMask.network
+        currentNetwork: state.metaMask.network,
+        txHash: state.token.transactionHash
     }
 };
 

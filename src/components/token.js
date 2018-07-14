@@ -56,7 +56,7 @@ const Token = ({classes, txHash, address, transactionInProgress, network, onClic
     return (
         <div className={classes.root}>
 
-            <Typography variant="display1" component="h2" className={classes.typography}>
+            <Typography variant="display2" component="h2" className={classes.typography}>
                 Transaction Hash
             </Typography>
 

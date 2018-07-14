@@ -109,7 +109,6 @@ class TextFields extends React.Component {
                 <form className={classes.container} noValidate autoComplete="off">
 
                     <TextField
-                        required
                         id="name"
                         label="NAME"
                         placeholder="TOKENGENCOIN"
@@ -118,9 +117,11 @@ class TextFields extends React.Component {
                         margin="normal"
                         onChange={this.handleChange('CHANGE_NAME')}
                         disabled={!isOnValidNetwork || success}
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
                     />
                     <TextField
-                        required
                         id="symbol"
                         label="SYMBOL"
                         placeholder="TGN"
@@ -129,9 +130,11 @@ class TextFields extends React.Component {
                         onChange={this.handleChange('CHANGE_SYMBOL')}
                         margin="normal"
                         disabled={!isOnValidNetwork || success}
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
                     />
                     <TextField
-                        required
                         id="totalSupply"
                         label="TOTAL SUPPLY"
                         placeholder={1000}

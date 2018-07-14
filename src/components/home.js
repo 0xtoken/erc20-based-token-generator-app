@@ -41,20 +41,20 @@ const styles = theme => ({
 class Home extends React.Component {
     render() {
 
-        const {classes, isMetaMaskLocked, currentNetwork} = this.props;
+        const {classes, isMetaMaskLocked, currentNetwork, txHash} = this.props;
 
         const isOnValidNetwork = currentNetwork === 'MAIN_ETHEREUM_NETWORK' || currentNetwork === 'ROPSTEN_TEST_NETWORK';
 
         return (
             <div className={classes.root}>
-                <Grid container spacing={24}>
+                <Grid container spacing={24} className={classes.paper}>
                     <Grid item xs={12}>
 
                         <Grid container item spacing={0} justify="center" className={classes.paper} >
                             <Grid item xs={12} sm={6}>
                                 <Paper className={classes.paper}>
 
-                                    <Typography variant="display1" component="h1" className={classes.typography}>
+                                    <Typography variant="display2" component="h2" className={classes.typography}>
                                         Token Generator
                                     </Typography>
 
@@ -73,7 +73,7 @@ class Home extends React.Component {
                                     <MetaMask/>
 
                                     {(()=> {
-                                        if (isOnValidNetwork) {
+                                        if (isOnValidNetwork && !isMetaMaskLocked) {
                                             return (
                                                 <Grid container item justify="center">
                                                     <Grid item xs={12} sm={6}>
@@ -87,13 +87,19 @@ class Home extends React.Component {
                             </Grid>
                         </Grid>
 
-                        <Grid container item spacing={0} justify="center" className={classes.paper} >
-                            <Grid item xs={12} sm={6}>
-                                <Paper className={classes.paper}>
-                                    <Token/>
-                                </Paper>
-                            </Grid>
-                        </Grid>
+                        {(()=> {
+                            if (txHash) {
+                                return (
+                                    <Grid container item spacing={0} justify="center" className={classes.paper} >
+                                        <Grid item xs={12} sm={6}>
+                                            <Paper className={classes.paper}>
+                                                <Token/>
+                                            </Paper>
+                                        </Grid>
+                                    </Grid>
+                                );
+                            }
+                        })()}
 
                     </Grid>
 

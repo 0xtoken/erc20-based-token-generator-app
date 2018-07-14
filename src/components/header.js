@@ -8,26 +8,29 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
-const styles = {
-    root: {
-        flexGrow: 1,
-    },
-    flex: {
-        flex: 1,
-    },
-    menuButton: {
-        marginLeft: -12,
-        marginRight: 20,
-    },
+const styles = (theme) => {
+    return {
+        root: {
+            flexGrow: 1,
+            paddingBottom: theme.spacing.unit * 8
+        },
+        flex: {
+            flex: 1,
+        },
+        menuButton: {
+            marginLeft: -12,
+            marginRight: 20,
+        }
+    }
 };
 
-const ButtonAppBar = ({ classes, faq, about }) => {
+const ButtonAppBar = ({ classes }) => {
     return (
         <div className={classes.root}>
-            <AppBar position="static">
+            <AppBar position="fixed">
                 <Toolbar>
                     <Typography variant="title" color="inherit" className={classes.flex}>
-                        ERC20 Token Generator
+                        Token Generator
                     </Typography>
                     <Button color="inherit" component={Link} to="/" >TOP</Button>
                     <Button color="inherit" component={Link} to="/steps" >STEPS</Button>
