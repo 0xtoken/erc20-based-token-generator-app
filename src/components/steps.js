@@ -210,36 +210,15 @@ const Steps = ({ classes }) => {
                                     <ExpansionPanelDetails>
                                         <Typography className={classes.typographyEx}>
 
-                                            MetaMaskだけでは、ERC20トークンの送付ができないため、MyEtherWalletを併用します。<br /><br />
+                                            MetaMaskのベータ版を利用することで他のアドレス（ウォレット）に作成したトークンを送付することができます。<br /><br />
 
-                                            まず、MyEtherWallet の"Send Ether & Tokens" を開きます。<br /><br />
+                                            MetaMaskを開き右上のメニューボタンを押下し「Try Beta」をクリックしてベータ版の利用を開始してください。<br /><br />
 
-                                            つぎに、MyEtherWallet でもトークンを認識できるようにするため、画面右下の "Token Balances" の "Add Custom Token" ボタンをクリックし、"Token Contract Address"にトークンアドレスを入力します。
-                                            "Token Symbol" にはトークンシンボル、Decimals には作成されたトークで入力してDecimalsを入力します。<br /><br />
+                                            新しいUIになったら左上のメニューボタンを押下し、先程追加したトークンをクリックするとトークンの詳細ページに移動します。<br /><br />
 
+                                            「送信」ボタンを押下すると「送信元」「送信先」「金額」を入力するフォームが開くのでそれらを埋めて「次へ」をクリックします。「ガス料金」には予め必要になる料金が表示されています。<br /><br />
 
-                                        </Typography>
-                                    </ExpansionPanelDetails>
-                                </ExpansionPanel>
-
-                                <ExpansionPanel>
-                                    <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                                        <Typography className={classes.heading}>STEP9(Extra): 他のウォレット（アドレス）にトークンを送付</Typography>
-                                    </ExpansionPanelSummary>
-                                    <ExpansionPanelDetails>
-                                        <Typography className={classes.typographyEx}>
-
-                                            まず、"To Address" にトークンの送付先アドレスを入力します。<br /><br />
-
-                                            つぎに、ETH と表示されている箇所をクリックし、プルダウンからトークンシンボルを選択します。<br /><br />
-
-                                            ETH と表示されている箇所をクリックし、プルダウンからトークンシンボルを選択します。<br /><br />
-
-                                            "Amount to Send" に送付するトークンの量を指定すると、Gas Limit が自動で調整されます。Gas Limit が自動で調整されない場合は、40000 程度を指定しておくと良いでしょう。<br /><br />
-
-                                            さいごに、"Generate Transaction", "Send Transaction", "Yes, I am sure! Make transaction." の順にボタンを押下すると、MetaMask の確認画面が表示されるので、"SUBMIT" ボタンを押下します。<br /><br />
-
-                                            しばらくすると、トランザクションがブロックに取り込まれ、トークンの送付が完了します。<br /><br />
+                                            入力した情報に間違いがないかを確認できたら、ページ下の「確認」ボタンを押下してトークンの送付が完了します。<br /><br />
 
 
                                         </Typography>

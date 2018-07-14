@@ -122,8 +122,10 @@ export const submit = () => {
                     gasPrice: (gas * 2).toString()
                 };
 
+                const toWei = Eth.toWei(totalSupply, 'ether');
+
                 // contractのメソッドの呼び出し
-                result = await tokenGenerator.generateToken(name, symbol, totalSupply, tx);
+                result = await tokenGenerator.generateToken(name, symbol, toWei, tx);
 
                 // 成功状態に変更
                 dispatch({

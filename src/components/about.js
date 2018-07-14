@@ -1,13 +1,16 @@
 import React from 'react';
 
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import {withStyles} from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 
-
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import IconButton from '@material-ui/core/IconButton';
 
 const styles = theme => ({
     root: {
@@ -22,16 +25,66 @@ const styles = theme => ({
         padding: theme.spacing.unit * 2,
         textAlign: 'center',
         color: theme.palette.text.secondary,
-    }
+    },
+    card: {
+        display: 'flex',
+        align: 'center',
+        paddingLeft: theme.spacing.unit,
+        paddingBottom: theme.spacing.unit,
+    },
+    details: {
+        display: 'flex',
+        flexDirection: 'column'
+    },
+    content: {
+        flex: '1 0 auto'
+    },
+    cover: {
+        width: 200,
+        height: 200,
+        paddingLeft: theme.spacing.unit,
+        paddingBottom: theme.spacing.unit,
+    },
+    controls: {
+        display: 'flex',
+        alignItems: 'flex-end',
+        paddingLeft: theme.spacing.unit,
+        paddingBottom: theme.spacing.unit,
+        justifyContent: 'center'
+
+    },
+    icon: {
+        width: 'inherit',
+        height: 'inherit'
+    },
+    button: {
+        paddingLeft: theme.spacing.unit,
+        paddingBottom: theme.spacing.unit,
+    },
 });
 
-const About = ({ classes }) => {
+const jump = (type) => {
+  return () => {
+      switch (type) {
+          case 'twitter':
+              return window.open("https://twitter.com/________saotome", "_blank");
+          case 'blog':
+              return window.open("https://madoka-saotome.com", "_blank");
+          case 'github':
+              return window.open("https://github.com/7madoka", "_blank");
+          default:
+              return window.open("https://token-generator.com", "_blank");
+      }
+  }
+};
+
+const About = ({classes}) => {
     return (
         <div className={classes.root}>
             <Grid container spacing={24} className={classes.paper}>
 
                 <Grid item xs={12}>
-                    <Grid container item spacing={0} justify="center" className={classes.paper} >
+                    <Grid container item spacing={0} justify="center" className={classes.paper}>
                         <Grid item xs={12} sm={6}>
                             <Paper className={classes.paper}>
 
@@ -56,7 +109,46 @@ const About = ({ classes }) => {
 
                             </Paper>
                         </Grid>
+                    </Grid>
 
+                    <Grid container item spacing={0} justify="center" className={classes.paper}>
+                        <Grid item xs={12} sm={4}>
+
+                            <Paper className={classes.paper}>
+
+                                <Typography variant="display2" component="h2" className={classes.typography}>
+                                    Developer
+                                </Typography>
+
+                                <Card className={classes.card}>
+                                    <CardMedia
+                                        className={classes.cover}
+                                        image="/static/icon.png"
+                                        title="Live from space album cover"
+                                    />
+
+                                    <div className={classes.details}>
+                                        <CardContent className={classes.content}>
+                                            <Typography variant="headline">Madoka Saotome</Typography>
+                                            <Typography variant="subheading" color="textSecondary">
+                                                Software Engineer in Japan
+                                            </Typography>
+                                        </CardContent>
+                                        <div className={classes.controls}>
+                                            <IconButton className={classes.button} aria-label="github" onClick={jump('github')}>
+                                                <img src="/static/github-circle.svg" className={classes.icon}/>
+                                            </IconButton>
+                                            <IconButton className={classes.button} aria-label="twitter" onClick={jump('twitter')}>
+                                                <img src="/static/twitter-circle.svg" className={classes.icon} />
+                                            </IconButton>
+                                            <IconButton className={classes.button} aria-label="blog" onClick={jump('blog')}>
+                                                <img src="/static/account-circle.svg" className={classes.icon}/>
+                                            </IconButton>
+                                        </div>
+                                    </div>
+                                </Card>
+                            </Paper>
+                        </Grid>
                     </Grid>
 
                 </Grid>
