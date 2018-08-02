@@ -3,10 +3,14 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import {red, lightBlue} from '@material-ui/core/colors'
+import {red, lightBlue, pink, teal} from '@material-ui/core/colors'
 
 const notLoggedIn = red[500];
 const loggedIn = lightBlue[500];
+
+
+const mainNetwork = teal[800];
+const ropstenNetwork = pink[700];
 
 const styles = theme => ({
     root: {
@@ -37,8 +41,22 @@ const styles = theme => ({
         padding: theme.spacing.unit,
         textAlign: 'center',
         color: notLoggedIn
+    },
+    ropsten: {
+        color: ropstenNetwork
+    },
+    main: {
+        color: mainNetwork
     }
 });
+
+const castNetworkMap = {
+    ROPSTEN_TEST_NETWORK: 'Ropsten Test Network',
+    MAIN_ETHEREUM_NETWORK: 'Main Ethereum Network',
+    DEPRECATED_MODERN_TEST_NETWORK: 'Deprecated Test Network',
+    RINKEBY_TEST_NETWORK: 'Rinkeby Test Network',
+    KOVAN_TEST_NETWORK: 'Kovan Test Network'
+}
 
 class MetaMask extends React.Component {
 
@@ -100,22 +118,34 @@ class MetaMask extends React.Component {
     render () {
 
         const {classes, account, network, isMetaMaskInstalled} = this.props;
-        const addressClass = account ?
-            classes.addressLoggedIn : classes.addressNotLoggedIn;
+
+        let addressClass;
+        if (account && network === 'ROPSTEN_TEST_NETWORK') {
+            addressClass = classes.ropsten;
+        } else if (account && network === 'MAIN_ETHEREUM_NETWORK') {
+            addressClass = classes.main;
+        } else {
+            addressClass =  classes.addressNotLoggedIn;
+        }
+
+        let currentNetwork = castNetworkMap[network];
+        if (currentNetwork === undefined) {
+            currentNetwork = 'Unknown'
+        }
 
         return (
             <div className={classes.root}>
                 <Typography variant="Subheading" component="h4" className={classes.typography}>
                     Your Current Address
                 </Typography>
-                <div className={addressClass}>
+                <div>
                     {isMetaMaskInstalled ? account ? account : 'METAMASK NOT LOGGED IN!' : 'INSTALL METAMASK FIRST!'}
                 </div>
                 <Typography variant="Subheading" component="h4" className={classes.typography}>
                     Your Current Network
                 </Typography>
                 <div className={addressClass}>
-                    {network}
+                    {currentNetwork}
                 </div>
             </div>);
     }

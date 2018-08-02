@@ -33,9 +33,9 @@ const ButtonAppBar = ({ classes }) => {
                         Token Generator
                     </Typography>
                     <Button color="inherit" component={Link} to="/" >TOP</Button>
+                    <Button color="inherit" component={Link} to="/generate-tokens">GENERATE</Button>
                     <Button color="inherit" component={Link} to="/steps" >STEPS</Button>
                     <Button color="inherit" component={Link} to="/faq">FAQ</Button>
-                    <Button color="inherit" component={Link} to="/about">ABOUT</Button>
                 </Toolbar>
             </AppBar>
         </div>

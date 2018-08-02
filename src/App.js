@@ -7,6 +7,7 @@ import Header from './containers/header'
 import About from "./components/about";
 import FAQ from "./components/faq";
 import STEPS from "./components/steps";
+import TOP from "./components/top";
 
 const styles = theme => ({
     root: {
@@ -41,10 +42,11 @@ class App extends Component {
             <div className={classes.main}>
                 <Header/>
                 <Switch>
-                    <Route exact path="/" component={Home} />
+                    <Route exact path="/" component={TOP} />
                     <Route path="/about" component={About} />
                     <Route path="/faq" component={FAQ} />
                     <Route path="/steps" component={STEPS} />
+                    <Route path="/generate-tokens" component={Home} />
                 </Switch>
             </div>
         );
